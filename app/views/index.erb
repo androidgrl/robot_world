@@ -1,0 +1,11 @@
+<a href="/">Home</a>
+<h1>Robot Profiles</h1>
+<% @robots.each do |robot| %>
+  <img src="https://robohash.org/<%= robot.name %>.png">
+  <h2>Name:  <%= robot.name %></h2>
+  <h2>City:  <%= robot.city %></h2>
+  <h2>State:  <%= robot.state %></h2>
+  <h2>Birthday:  <%= robot.birthday %></h2>
+  <h2>Date Hired:  <%= robot.date_hired %></h2>
+  <h2>Department:  <%= robot.department %></h2>
+<% end %>

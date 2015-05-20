@@ -1,0 +1,17 @@
+---
+robots:
+- id: 1
+  name: j
+  city: j
+  state: j
+  birthday: 
+  date_hired: j
+  department: j
+- id: 2
+  name: Jamie
+  city: Pleasanton
+  state: CA
+  birthday: 
+  date_hired: 2-26-16
+  department: engineering
+total: 2
