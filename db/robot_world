@@ -7,11 +7,11 @@ robots:
   birthday: 2/26/7755
   date_hired: 2/26/165
   department: engineering5
-- id: 2
-  name: jk
-  city: kff
-  state: fffff
-  birthday: ffff
-  date_hired: ffff
-  department: ffff
-total: 2
+- id: 3
+  name: Benny
+  city: Pleasanton
+  state: Colorado
+  birthday: wow
+  date_hired: wee
+  department: woohoo
+total: 3
