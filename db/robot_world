@@ -1,17 +1,17 @@
 ---
 robots:
 - id: 1
-  name: j
-  city: j
-  state: j
-  birthday: 
-  date_hired: j
-  department: j
+  name: Jamie5
+  city: Pleasanton5
+  state: CA5
+  birthday: 2/26/7755
+  date_hired: 2/26/165
+  department: engineering5
 - id: 2
-  name: Jamie
-  city: Pleasanton
-  state: CA
-  birthday: 
-  date_hired: 2-26-16
-  department: engineering
+  name: jk
+  city: kff
+  state: fffff
+  birthday: ffff
+  date_hired: ffff
+  department: ffff
 total: 2

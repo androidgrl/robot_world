@@ -1,0 +1,17 @@
+<a href='/'>Home</a>
+<form action="/robots/<%= @robot.id %>" method="post">
+  <p>Enter Name:</p>
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="robot[name]" value="<%= @robot.name %>">
+  <p>Enter City:</p>
+  <input type="text" name="robot[city]" value="<%= @robot.city %>">
+  <p>Enter State:</p>
+  <input type="text" name="robot[state]" value="<%= @robot.state %>">
+  <p>Enter Birthdate:</p>
+  <input type="text" name="robot[birthday]" value="<%= @robot.birthday %>">
+  <p>Enter Date Hired:</p>
+  <input type="text" name="robot[date_hired]" value="<%= @robot.date_hired %>">
+  <p>Enter Department:</p>
+  <input type="text" name="robot[department]" value="<%= @robot.department %>">
+  <p><input type="submit"></p>
+</form>

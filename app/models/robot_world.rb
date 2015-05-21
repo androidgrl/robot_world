@@ -1,9 +1,13 @@
 require 'yaml/store'
-require_relative 'robot'
+#require_relative 'robot'
 
 class RobotWorld
   def self.database
-    @database ||= YAML::Store.new("db/robot_world")
+    if ENV["ROBOT_WORLD_ENV"] == 'test'
+      @database ||= YAML::Store.new("db/robot_world_test")
+    else
+      @database ||= YAML::Store.new("db/robot_world")
+    end
   end
 
   def self.create(robot)
@@ -29,6 +33,41 @@ class RobotWorld
   def self.raw_robots
     database.transaction do
       database["robots"] || []
+    end
+  end
+
+  def self.raw_robot(id)
+    raw_robots.find do |robot|
+      robot["id"] == id
+    end
+  end
+
+  def self.find(id)
+    Robot.new(raw_robot(id))
+  end
+
+  def self.update(id, data)
+    database.transaction do
+      target = database["robots"].find { |robot| robot["id"] == id }
+      target["name"] = data["name"]
+      target["city"] = data["city"]
+      target["state"] = data["state"]
+      target["birthday"] = data["birthday"]
+      target["date_hired"] = data["date_hired"]
+      target["department"] = data["department"]
+    end
+  end
+
+  def self.destroy(id)
+    database.transaction do
+      database['robots'].delete_if { |task| task["id"] == id }
+    end
+  end
+
+  def self.delete_all
+    database.transaction do
+      database["robots"] = []
+      database["total"] = 0
     end
   end
 end

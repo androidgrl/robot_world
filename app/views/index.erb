@@ -1,6 +1,7 @@
 <a href="/">Home</a>
 <h1>Robot Profiles</h1>
 <% @robots.each do |robot| %>
+  </br>
   <img src="https://robohash.org/<%= robot.name %>.png">
   <h2>Name:  <%= robot.name %></h2>
   <h2>City:  <%= robot.city %></h2>
@@ -8,4 +9,6 @@
   <h2>Birthday:  <%= robot.birthday %></h2>
   <h2>Date Hired:  <%= robot.date_hired %></h2>
   <h2>Department:  <%= robot.department %></h2>
+  <a href="/robots/<%= robot.id %>">Profile Page</a></br>
+  <a href="/robots/<%= robot.id %>/edit">Edit</a>
 <% end %>
