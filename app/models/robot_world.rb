@@ -1,12 +1,11 @@
 require 'yaml/store'
-#require_relative 'robot'
 
 class RobotWorld
   def self.database
     if ENV["ROBOT_WORLD_ENV"] == 'test'
-      @database ||= YAML::Store.new("db/robot_world_test")
+      @database ||= Sequel.sqlite("db/robot_world_test.sqlite3")
     else
-      @database ||= YAML::Store.new("db/robot_world")
+      @database ||= Sequel.sqlite("db/robot_world.sqlite3")
     end
   end
 
