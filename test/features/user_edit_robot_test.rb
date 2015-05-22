@@ -13,7 +13,8 @@ class UserEditRobotTest < FeatureTest
     click_on("Edit")
     fill_in("robot[name]", with: "Joon")
     click_on("submit")
-    assert_equal "/robots/1", current_path
+    last_id = RobotWorld.all.last.id
+    assert_equal "/robots/#{last_id}", current_path
     within("#robot") do
       assert page.has_content?("Joon")
     end

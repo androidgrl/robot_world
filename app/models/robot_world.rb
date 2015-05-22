@@ -10,63 +10,73 @@ class RobotWorld
   end
 
   def self.create(robot)
-    database.transaction do
-      database["robots"] ||= []
-      database["total"] ||= 0
-      database["total"] += 1
-      database["robots"] << { "id" => database["total"],
-                              "name" => robot["name"],
-                              "city" => robot["city"],
-                              "state" => robot["state"],
-                              "birthday" => robot["birthday"],
-                              "date_hired" => robot["date_hired"],
-                              "department" => robot["department"]
-      }
-    end
+    dataset.insert(robot)
+    #database.transaction do
+      #database["robots"] ||= []
+      #database["total"] ||= 0
+      #database["total"] += 1
+      #database["robots"] << { "id" => database["total"],
+                              #"name" => robot["name"],
+                              #"city" => robot["city"],
+                              #"state" => robot["state"],
+                              #"birthday" => robot["birthday"],
+                              #"date_hired" => robot["date_hired"],
+                              #"department" => robot["department"]
+      #}
+    #end
   end
 
   def self.all
-    raw_robots.map { |data| Robot.new(data) }
+    dataset.select.to_a.map {|data| Robot.new(data)}
+    #raw_robots.map { |data| Robot.new(data) }
   end
 
-  def self.raw_robots
-    database.transaction do
-      database["robots"] || []
-    end
-  end
+  #def self.raw_robots
+    #database.transaction do
+      #database["robots"] || []
+    #end
+  #end
 
-  def self.raw_robot(id)
-    raw_robots.find do |robot|
-      robot["id"] == id
-    end
-  end
+  #def self.raw_robot(id)
+    #raw_robots.find do |robot|
+      #robot["id"] == id
+    #end
+  #end
 
   def self.find(id)
-    Robot.new(raw_robot(id))
+    robot = dataset.where(id: id)
+    Robot.new(robot.to_a.first)
   end
 
   def self.update(id, data)
-    database.transaction do
-      target = database["robots"].find { |robot| robot["id"] == id }
-      target["name"] = data["name"]
-      target["city"] = data["city"]
-      target["state"] = data["state"]
-      target["birthday"] = data["birthday"]
-      target["date_hired"] = data["date_hired"]
-      target["department"] = data["department"]
-    end
+    dataset.where(id: id).update(data)
+    #database.transaction do
+      #target = database["robots"].find { |robot| robot["id"] == id }
+      #target["name"] = data["name"]
+      #target["city"] = data["city"]
+      #target["state"] = data["state"]
+      #target["birthday"] = data["birthday"]
+      #target["date_hired"] = data["date_hired"]
+      #target["department"] = data["department"]
+    #end
   end
 
   def self.destroy(id)
-    database.transaction do
-      database['robots'].delete_if { |task| task["id"] == id }
-    end
+    dataset.where(id: id).delete
+    #database.transaction do
+      #database['robots'].delete_if { |task| task["id"] == id }
+    #end
   end
 
   def self.delete_all
-    database.transaction do
-      database["robots"] = []
-      database["total"] = 0
-    end
+    dataset.delete
+    #database.transaction do
+      #database["robots"] = []
+      #database["total"] = 0
+    #end
+  end
+
+  def self.dataset
+    database.from(:robots)
   end
 end
