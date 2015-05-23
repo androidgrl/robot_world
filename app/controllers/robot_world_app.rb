@@ -6,8 +6,9 @@ class RobotWorldApp < Sinatra::Base
   end
 
   get '/robots' do
-    @robots = RobotWorld.all
-    erb :index
+    robots = RobotWorld.all
+    average_age = 2
+    erb :index, :locals => {:robots => robots, :average_age => average_age}
   end
 
   get '/robots/new' do
