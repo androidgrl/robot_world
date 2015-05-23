@@ -17,7 +17,7 @@ class RobotWorld
                         birthday: Faker::Date.backward(15000),
                         date_hired: Faker::Date.backward(1500),
                         department: Faker::Commerce.department
-                      })
+      })
     else
       dataset.insert(robot)
     end
@@ -42,6 +42,16 @@ class RobotWorld
 
   def self.delete_all
     dataset.delete
+  end
+
+  def self.average_age
+    if dataset.select.to_a.any?
+      birthday_years = dataset.select(:birthday).to_a.map { |row| row[:birthday][0..3] }
+      average_birthyear = birthday_years.map(&:to_i).reduce(:+) / birthday_years.length
+      average_age = 2015 - average_birthyear
+    else
+      "No profiles available"
+    end
   end
 
   def self.dataset

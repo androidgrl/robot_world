@@ -2,13 +2,13 @@ class RobotWorldApp < Sinatra::Base
   set :root, File.join(File.dirname(__FILE__), "..")
 
   get '/' do
-    erb :dashboard
+    average_age = RobotWorld.average_age
+    erb :dashboard, :locals => { :average_age => average_age }
   end
 
   get '/robots' do
     robots = RobotWorld.all
-    average_age = 2
-    erb :index, :locals => {:robots => robots, :average_age => average_age}
+    erb :index, :locals => {:robots => robots}
   end
 
   get '/robots/new' do
