@@ -3,6 +3,7 @@
 <div id="robots">
   <% robots.each do |robot| %>
     </br>
+    <div id="robot-block">
     <img src="https://robohash.org/<%= robot.name %>.png">
     <h2>Name:  <%= robot.name %></h2>
     <h3>City:  <%= robot.city %></h2>
@@ -16,5 +17,6 @@
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="Delete">
     </form>
+    </div>
   <% end %>
 </div>

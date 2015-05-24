@@ -61,4 +61,41 @@ class RobotWorldTest < Minitest::Test
 
     assert_equal 0, RobotWorld.all.count
   end
+
+  def test_it_finds_the_average_age
+    RobotWorld.create({:birthday => "2009-4-20"})
+    RobotWorld.create({:birthday => "2015-4-20"})
+
+    assert_equal 3, RobotWorld.average_age
+  end
+
+  def test_it_finds_robots_hired_per_year
+    RobotWorld.create({:name => "Hello", :date_hired => "2014-9-09"})
+    RobotWorld.create({:name => "Hello", :date_hired => "2014-9-09"})
+
+    assert_equal [[2014, 2]], RobotWorld.hired_per_year.to_a
+  end
+
+  def test_it_finds_robots_per_department
+    RobotWorld.create({:name => "Hello", :department => "maintenance"})
+    RobotWorld.create({:name => "Hello", :department => "catering"})
+
+    assert_equal [["maintenance", 1], ["catering", 1]], RobotWorld.per_department.to_a
+  end
+
+  def test_it_finds_robots_per_state
+    RobotWorld.create({:name => "Hello", :state => "CA"})
+    RobotWorld.create({:name => "Hello", :state => "CA"})
+    RobotWorld.create({:name => "Hello", :state => "NY"})
+
+    assert_equal [["CA", 2], ["NY", 1]], RobotWorld.per_state.to_a
+  end
+
+  def test_it_finds_robots_per_city
+    RobotWorld.create({:name => "Hello", :city => "Pleasanton"})
+    RobotWorld.create({:name => "Hello", :city => "Denver"})
+    RobotWorld.create({:name => "Hello", :city => "Denver"})
+
+    assert_equal [["Pleasanton", 1], ["Denver", 2]], RobotWorld.per_city.to_a
+  end
 end

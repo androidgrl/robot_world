@@ -3,7 +3,15 @@ class RobotWorldApp < Sinatra::Base
 
   get '/' do
     average_age = RobotWorld.average_age
-    erb :dashboard, :locals => { :average_age => average_age }
+    hired_per_year = RobotWorld.hired_per_year
+    per_department = RobotWorld.per_department
+    per_state = RobotWorld.per_state
+    per_city = RobotWorld.per_city
+    erb :dashboard, :locals => { :average_age => average_age,
+                                 :hired_per_year => hired_per_year,
+                                 :per_department => per_department,
+                                 :per_state => per_state,
+                                 :per_city => per_city }
   end
 
   get '/robots' do

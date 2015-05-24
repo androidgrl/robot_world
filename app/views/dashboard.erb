@@ -2,4 +2,19 @@
 <a href="/robots/new">Create New Robot Profile</a>
 <h1 id="welcome">Welcome to Robot World!</h1>
 <h2 id="average_age">Average Age at Robot World: <%= average_age %></h2>
-
+<h2 id="hired">Robots Hired per Year: </h2>
+<% hired_per_year.each do |key, value| %>
+  <h3>In <%= key %>, <%= value %> robots were hired</h3>
+<% end %>
+<h2>Robots Hired Per Department:</h2>
+<% per_department.each do |key, value| %>
+  <h3><%= value %> robots were hired in the <%= key %> department</h3>
+<% end %>
+<h2>Robots Per State:</h2>
+<% per_state.each do |key, value| %>
+  <h3><%= value %> robots live in the state of <%= key %></h3>
+<% end %>
+<h2>Robots Per City:</h2>
+<% per_city.each do |key, value| %>
+  <h3><%= value %> robots live in the city of <%= key %></h3>
+<% end %>
